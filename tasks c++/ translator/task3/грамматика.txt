@@ -1,0 +1,16 @@
+P → program {D0;} D1 ; B ⊥
+D0 → type I = record D {,D} end
+D1 → var D { , D }
+D → I { , I } : I
+B → begin S { ; S } end 
+S → I := E | if E then S else S | while E do S | B | read ( I ) | write ( E )
+E → E1 [ = | < | > | != ] E1 | E1
+E1 → T { [ + | - | or ] T } 
+T → F { [ * | / | and ] F }
+F → I | N | L | not F | ( E )
+L → true | false
+
+I → C | IC | IR | I.I
+N → R | NR
+C → a | b | ... | z | A | B | ... | Z
+R → 0 | 1 | 2 | ... | 9
