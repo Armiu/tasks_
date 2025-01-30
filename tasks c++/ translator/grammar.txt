@@ -1,0 +1,14 @@
+P → LEX_PROGRAM D1; B;
+D1 → LEX_VAR D {,D} | LEX_TYPE Rec{,Rec} {LEX_VAR D {,D}}
+Rec → LEX_ID = LEX_RECORD D{,D} LEX_END;
+D → I {, I}: [ LEX_INT | LEX_BOOLEAN]
+B → LEX_BEGIN S {;S} LEX_END
+S → I LEX_ASSIGN E | LEX_IF E LEX_THEN S LEX_ELSE S | LEX_WHILE E LEX_DO S | B | LEX_READ (I) | READ_WRITE (E)
+E → E1 [ LEX_EQ | LEX_GTR | LEX_SS | LES_NEQ ] E1 | E1
+E1 → T {[ LEX_PLUS | LEX_MINUS | LEX_OR ] T}
+T → F {[ LEX_TIMES | LEX_SLASH | LEX_AND ] F}
+F → I | N | LEX_TRUE | LEX_FALSE | LEX_NOT F | (E)
+I → C | IC | IDig
+N → Dig | NDig
+C → a | b | ... | z | A | B | ... | Z
+Dig → 0 | 1 | 2 | ... | 9
